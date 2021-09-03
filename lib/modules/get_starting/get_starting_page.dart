@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class GetStartingPage extends StatelessWidget {
   const GetStartingPage({Key? key}) : super(key: key);
@@ -72,24 +73,34 @@ class GetStartingPage extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(15)),
             child: Column(
               children: [
-                ListTile(
-                  title: Text(
-                    "Sou Administrador",
-                    style: TextStyle(
-                        fontFamily: 'Roboto', fontWeight: FontWeight.w500),
+                InkWell(
+                  onTap: () {
+                    Modular.to.pushNamed('/choose');
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "Sou Administrador",
+                      style: TextStyle(
+                          fontFamily: 'Roboto', fontWeight: FontWeight.w500),
+                    ),
+                    trailing: Icon(Icons.arrow_forward_ios),
                   ),
-                  trailing: Icon(Icons.arrow_forward_ios),
                 ),
                 Divider(
                   thickness: 1,
                 ),
-                ListTile(
-                  title: Text(
-                    "Sou usuário comum",
-                    style: TextStyle(
-                        fontFamily: 'Roboto', fontWeight: FontWeight.w500),
+                InkWell(
+                  onTap: () {
+                    Modular.to.pushNamed('/choose');
+                  },
+                  child: ListTile(
+                    title: Text(
+                      "Sou usuário comum",
+                      style: TextStyle(
+                          fontFamily: 'Roboto', fontWeight: FontWeight.w500),
+                    ),
+                    trailing: Icon(Icons.arrow_forward_ios),
                   ),
-                  trailing: Icon(Icons.arrow_forward_ios),
                 ),
               ],
             ),
