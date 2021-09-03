@@ -75,7 +75,7 @@ class GetStartingPage extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    Modular.to.pushNamed('/choose');
+                    Modular.to.pushNamed('/login');
                   },
                   child: ListTile(
                     title: Text(
