@@ -16,15 +16,8 @@ class GetStartingPage extends StatelessWidget {
                 child: Container(
                   width: double.maxFinite,
                   decoration: BoxDecoration(
-                      color: Color.fromRGBO(37, 59, 179, 1),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                        ),
-                      ]),
+                    color: Color.fromRGBO(37, 59, 179, 1),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: Column(
@@ -70,7 +63,16 @@ class GetStartingPage extends StatelessWidget {
             margin: EdgeInsets.all(8),
             // height: 150,
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ]),
             child: Column(
               children: [
                 InkWell(
