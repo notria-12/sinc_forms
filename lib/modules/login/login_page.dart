@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -8,7 +9,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String dropdownValue = 'Adimistrativo';
+  String dropdownValue = 'Selecione o Setor';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,33 +66,53 @@ class _LoginPageState extends State<LoginPage> {
                     height: 15,
                   ),
                   Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
                     width: double.maxFinite,
+                    decoration: BoxDecoration(
+                        color: Colors.blue[100],
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10)),
+
                     // width: MediaQuery.of(context).size.width * 0.6,
                     child: DropdownButton<String>(
                       value: dropdownValue,
                       // icon: const Icon(Icons.arrow_downward),
                       // iconSize: 24,
-
+                      icon: Container(),
+                      underline: Container(),
                       elevation: 16,
-                      style: const TextStyle(color: Colors.deepPurple),
-                      underline: Container(
-                        height: 2,
-                        color: Colors.deepPurpleAccent,
-                      ),
+                      style: const TextStyle(color: Colors.black),
+
                       onChanged: (String? newValue) {
                         setState(() {
                           dropdownValue = newValue!;
                         });
                       },
                       items: <String>[
+                        'Selecione o Setor',
                         'Adimistrativo',
                         'Segurança do Trabalho',
                         'Transporte',
-                        'Indústria'
+                        'Indústria',
+                        'Recursos Humanos',
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value),
+                          child: Container(
+                              // color: Colors.blue[50],
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    value,
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto', fontSize: 16),
+                                  ),
+                                  Icon(Icons.arrow_drop_down_circle)
+                                ],
+                              )),
                         );
                       }).toList(),
                     ),
@@ -117,7 +138,9 @@ class _LoginPageState extends State<LoginPage> {
                       height: 50,
                       width: double.maxFinite,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Modular.to.pushNamed('/home');
+                        },
                         child: Text('ENTRAR'),
                         style: ElevatedButton.styleFrom(
                             primary: Color.fromRGBO(33, 33, 33, 1)),
