@@ -34,7 +34,7 @@ class ChooseSectorPage extends StatelessWidget {
                     // Modular.to.pushNamed('/choose');
                   },
                   child: SectorWidget(
-                    label: "Administrativo",
+                    label: "Tecnologia da Informação(T.I)",
                   ),
                 ),
                 SizedBox(
@@ -78,7 +78,7 @@ class ChooseSectorPage extends StatelessWidget {
                     // Modular.to.pushNamed('/choose');
                   },
                   child: SectorWidget(
-                    label: "Recursos Humanos",
+                    label: "Recursos Humanos(RH)",
                   ),
                 ),
               ],
