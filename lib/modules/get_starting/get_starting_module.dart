@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sinc_forms/modules/get_starting/choose_sector_page.dart';
+
 import 'package:sinc_forms/modules/get_starting/get_starting_page.dart';
 
 class GetStartingModule extends Module {
@@ -9,6 +9,5 @@ class GetStartingModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, __) => GetStartingPage()),
-    ChildRoute('/choose', child: (_, __) => ChooseSectorPage()),
   ];
 }

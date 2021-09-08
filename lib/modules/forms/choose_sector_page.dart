@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ChooseSectorPage extends StatelessWidget {
   const ChooseSectorPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class ChooseSectorPage extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    // Modular.to.pushNamed('/choose');
+                    Modular.to.pushNamed('/forms/ti');
                   },
                   child: SectorWidget(
                     label: "Tecnologia da Informação(T.I)",

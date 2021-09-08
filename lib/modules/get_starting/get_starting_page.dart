@@ -93,7 +93,7 @@ class GetStartingPage extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Modular.to.pushNamed('/choose');
+                    Modular.to.pushNamed('/forms');
                   },
                   child: ListTile(
                     title: Text(
