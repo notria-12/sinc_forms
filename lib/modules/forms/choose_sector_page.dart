@@ -54,7 +54,7 @@ class ChooseSectorPage extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    // Modular.to.pushNamed('/choose');
+                    Modular.to.pushNamed('/forms/industry');
                   },
                   child: SectorWidget(
                     label: "Indústria",
