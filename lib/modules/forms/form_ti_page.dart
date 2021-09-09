@@ -15,6 +15,7 @@ class _FormTIPageState extends State<FormTIPage> {
       backgroundColor: Color.fromRGBO(240, 235, 248, 1),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 50,
@@ -30,7 +31,7 @@ class _FormTIPageState extends State<FormTIPage> {
                       Container(
                         height: 15,
                         decoration: BoxDecoration(
-                            color: Color.fromRGBO(103, 58, 183, 1)),
+                            color: Color.fromRGBO(37, 59, 179, 1)),
                       ),
                       SizedBox(
                         height: 20,
@@ -184,6 +185,48 @@ class _FormTIPageState extends State<FormTIPage> {
                 ),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Card(
+                child: Container(
+                  // height: 120,
+                  width: double.maxFinite,
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Anexar Arquivo",
+                        style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                              primary: Color.fromRGBO(37, 59, 179, 1)),
+                          onPressed: () {},
+                          icon: Icon(Icons.file_present),
+                          label: Text('Anexar Arquivo')),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                height: 30,
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Modular.to.pushNamed('/home');
+                  },
+                  child: Text('ENVIAR'),
+                  style: ElevatedButton.styleFrom(
+                      primary: Color.fromRGBO(33, 33, 33, 1)),
+                ))
           ],
         ),
       ),
