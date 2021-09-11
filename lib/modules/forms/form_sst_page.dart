@@ -11,6 +11,7 @@ class FormSSTPage extends StatefulWidget {
 
 class _FormSSTPageState extends State<FormSSTPage> {
   int val = -1;
+  int radioValue = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,6 +92,145 @@ class _FormSSTPageState extends State<FormSSTPage> {
                 label: "Descrição do serviço solicitado",
                 widget: TextFormField(
                   decoration: InputDecoration(hintText: "Descreva o serviço"),
+                )),
+            CardForm(
+                label: "Prioridade",
+                widget: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Text("Muito alta"),
+                      flex: 3,
+                    ),
+                    Flexible(
+                      flex: 6,
+                      child: Container(
+                        // color: Colors.amber[50],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          // mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text("1"),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  // color: Colors.blue,
+                                  child: SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: Radio(
+                                      value: 1,
+                                      groupValue: radioValue,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          radioValue = value as int;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text("2"),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: Radio(
+                                    value: 2,
+                                    groupValue: radioValue,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        radioValue = value as int;
+                                      });
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text("3"),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: Radio(
+                                    value: 3,
+                                    groupValue: radioValue,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        radioValue = value as int;
+                                      });
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text("4"),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: Radio(
+                                    value: 4,
+                                    groupValue: radioValue,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        radioValue = value as int;
+                                      });
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text("5"),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: Radio(
+                                    value: 5,
+                                    groupValue: radioValue,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        radioValue = value as int;
+                                      });
+                                    },
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Text("Muito baixa"),
+                      flex: 3,
+                    ),
+                  ],
                 ))
           ],
         ),
