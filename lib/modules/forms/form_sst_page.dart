@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sinc_forms/shared/widgets/card_form_widget.dart';
 import 'package:sinc_forms/shared/widgets/header_form_widget.dart';
 
@@ -12,6 +13,7 @@ class FormSSTPage extends StatefulWidget {
 class _FormSSTPageState extends State<FormSSTPage> {
   int val = -1;
   int radioValue = -1;
+  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +24,7 @@ class _FormSSTPageState extends State<FormSSTPage> {
       backgroundColor: Color.fromRGBO(240, 235, 248, 1),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HeaderForm(label: "Solicitação de Serviços em SST"),
             CardForm(
@@ -231,10 +234,72 @@ class _FormSSTPageState extends State<FormSSTPage> {
                       flex: 3,
                     ),
                   ],
+                )),
+            CardForm(
+                label: "Prazo",
+                widget: ListTile(
+                  title: TextFormField(
+                    // initialValue: ,
+
+                    readOnly: true,
+                    decoration: InputDecoration(
+                        // labelText: "Data",
+                        hintText:
+                            DateFormat("dd/MM/yyyy").format(selectedDate)),
+                  ),
+                  trailing: IconButton(
+                      icon: Icon(Icons.calendar_today_rounded),
+                      onPressed: () => buildMaterialDatePicker(context)),
+                )),
+            CardForm(
+                label: "Mais detalhes importantes",
+                widget: TextFormField(
+                  decoration: InputDecoration(hintText: "Detalhes"),
+                )),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                height: 30,
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Modular.to.pushNamed('/home');
+                  },
+                  child: Text('ENVIAR'),
+                  style: ElevatedButton.styleFrom(
+                      primary: Color.fromRGBO(33, 33, 33, 1)),
                 ))
           ],
         ),
       ),
     );
+  }
+
+  buildMaterialDatePicker(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+      initialEntryMode: DatePickerEntryMode.calendar,
+      initialDatePickerMode: DatePickerMode.day,
+      // selectableDayPredicate: _decideWhichDayToEnable,
+      helpText: 'Selecione a Data',
+      cancelText: 'Cancelar',
+      confirmText: 'Ok',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter date in valid range',
+      fieldLabelText: 'Booking date',
+      fieldHintText: 'Month/Date/Year',
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light(),
+          child: child!,
+        );
+      },
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
   }
 }

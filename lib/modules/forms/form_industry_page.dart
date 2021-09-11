@@ -27,6 +27,7 @@ class _FormIndustryPageState extends State<FormIndustryPage> {
       backgroundColor: Color.fromRGBO(240, 235, 248, 1),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HeaderForm(
               label: "Apropriação de horas(manutenção)",
