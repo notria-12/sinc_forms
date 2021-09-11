@@ -65,7 +65,7 @@ class ChooseSectorPage extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    // Modular.to.pushNamed('/choose');
+                    Modular.to.pushNamed('/forms/sst');
                   },
                   child: SectorWidget(
                     label: "Segurança do trabalho",
