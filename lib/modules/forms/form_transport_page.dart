@@ -31,6 +31,19 @@ class _FormTransportPageState extends State<FormTransportPage> {
   int radioValueLamps = -1;
   int radioValueWaterOil = -1;
   int radioValueKnobsLocks = -1;
+  int radioValueLubrication = -1;
+  int radioValueTires = -1;
+  int radioValueSolder = -1;
+  int radioValueChest = -1;
+  int radioValueJack = -1;
+  int radioValueTireIron = -1;
+  int radioValueTriangle = -1;
+  int radioValueExtinguisher = -1;
+  int radioValueSecurityKit = -1;
+  int radioValueWindshield = -1;
+  int radioValueAntiTheft = -1;
+  int radioValueStamp = -1;
+  int radioValueServiceDone = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -1225,6 +1238,577 @@ class _FormTransportPageState extends State<FormTransportPage> {
                       ],
                     )
                   ],
+                )),
+            CardForm(
+                label: "Lubrificação geral",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Ok'),
+                          value: 1,
+                          groupValue: radioValueLubrication,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueLubrication = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Não Ok'),
+                          value: 2,
+                          groupValue: radioValueLubrication,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueLubrication = value as int;
+                            });
+                          }),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          flex: 3,
+                          child: Container(
+                            height: 40,
+                            child: RadioListTile(
+                                title: Text('Outro'),
+                                value: 3,
+                                groupValue: radioValueLubrication,
+                                onChanged: (value) {
+                                  setState(() {
+                                    radioValueLubrication = value as int;
+                                  });
+                                }),
+                          ),
+                        ),
+                        Visibility(
+                            child: Flexible(
+                          child: TextFormField(
+                            enabled: radioValueLubrication == 3,
+                          ),
+                          flex: 5,
+                        ))
+                      ],
+                    )
+                  ],
+                )),
+            CardForm(
+                label: "Verificar os pneus",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Ok'),
+                          value: 1,
+                          groupValue: radioValueTires,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueTires = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Não Ok'),
+                          value: 2,
+                          groupValue: radioValueTires,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueTires = value as int;
+                            });
+                          }),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          flex: 3,
+                          child: Container(
+                            height: 40,
+                            child: RadioListTile(
+                                title: Text('Outro'),
+                                value: 3,
+                                groupValue: radioValueTires,
+                                onChanged: (value) {
+                                  setState(() {
+                                    radioValueTires = value as int;
+                                  });
+                                }),
+                          ),
+                        ),
+                        Visibility(
+                            child: Flexible(
+                          child: TextFormField(
+                            enabled: radioValueTires == 3,
+                          ),
+                          flex: 5,
+                        ))
+                      ],
+                    )
+                  ],
+                )),
+            CardForm(
+                label: "Serviço de solda",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Ok'),
+                          value: 1,
+                          groupValue: radioValueSolder,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueSolder = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Não Ok'),
+                          value: 2,
+                          groupValue: radioValueSolder,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueSolder = value as int;
+                            });
+                          }),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          flex: 3,
+                          child: Container(
+                            height: 40,
+                            child: RadioListTile(
+                                title: Text('Outro'),
+                                value: 3,
+                                groupValue: radioValueSolder,
+                                onChanged: (value) {
+                                  setState(() {
+                                    radioValueSolder = value as int;
+                                  });
+                                }),
+                          ),
+                        ),
+                        Visibility(
+                            child: Flexible(
+                          child: TextFormField(
+                            enabled: radioValueSolder == 3,
+                          ),
+                          flex: 5,
+                        ))
+                      ],
+                    )
+                  ],
+                )),
+            CardForm(
+                label: "Verificar o baú",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Ok'),
+                          value: 1,
+                          groupValue: radioValueChest,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueChest = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Não Ok'),
+                          value: 2,
+                          groupValue: radioValueChest,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueChest = value as int;
+                            });
+                          }),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          flex: 3,
+                          child: Container(
+                            height: 40,
+                            child: RadioListTile(
+                                title: Text('Outro'),
+                                value: 3,
+                                groupValue: radioValueChest,
+                                onChanged: (value) {
+                                  setState(() {
+                                    radioValueChest = value as int;
+                                  });
+                                }),
+                          ),
+                        ),
+                        Visibility(
+                            child: Flexible(
+                          child: TextFormField(
+                            enabled: radioValueChest == 3,
+                          ),
+                          flex: 5,
+                        ))
+                      ],
+                    )
+                  ],
+                )),
+            CardForm(
+                label: "Verificar - Macaco",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('SIM'),
+                          value: 1,
+                          groupValue: radioValueJack,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueJack = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('NÃO'),
+                          value: 2,
+                          groupValue: radioValueJack,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueJack = value as int;
+                            });
+                          }),
+                    ),
+                  ],
+                )),
+            CardForm(
+                label: "Verificar - Chave de roda",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('SIM'),
+                          value: 1,
+                          groupValue: radioValueTireIron,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueTireIron = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('NÃO'),
+                          value: 2,
+                          groupValue: radioValueTireIron,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueTireIron = value as int;
+                            });
+                          }),
+                    ),
+                  ],
+                )),
+            CardForm(
+                label: "Verificar - Triângulo",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('SIM'),
+                          value: 1,
+                          groupValue: radioValueTriangle,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueTriangle = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('NÃO'),
+                          value: 2,
+                          groupValue: radioValueTriangle,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueTriangle = value as int;
+                            });
+                          }),
+                    ),
+                  ],
+                )),
+            CardForm(
+                label: "Verificar - EXTINTOR DE INCÊNDIO",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('SIM'),
+                          value: 1,
+                          groupValue: radioValueExtinguisher,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueExtinguisher = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('NÃO'),
+                          value: 2,
+                          groupValue: radioValueExtinguisher,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueExtinguisher = value as int;
+                            });
+                          }),
+                    ),
+                  ],
+                )),
+            CardForm(
+                label: "Verificar - KIT DE SEGURANÇA",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('SIM'),
+                          value: 1,
+                          groupValue: radioValueSecurityKit,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueSecurityKit = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('NÃO'),
+                          value: 2,
+                          groupValue: radioValueSecurityKit,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueSecurityKit = value as int;
+                            });
+                          }),
+                    ),
+                  ],
+                )),
+            CardForm(
+                label: "Verificar - PARA-BRISA E JANELAS",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('SIM'),
+                          value: 1,
+                          groupValue: radioValueWindshield,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueWindshield = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('NÃO'),
+                          value: 2,
+                          groupValue: radioValueWindshield,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueWindshield = value as int;
+                            });
+                          }),
+                    ),
+                  ],
+                )),
+            CardForm(
+                label: "Verificar - Anti-Furto",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Selada'),
+                          value: 1,
+                          groupValue: radioValueAntiTheft,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueAntiTheft = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Não Selada'),
+                          value: 2,
+                          groupValue: radioValueAntiTheft,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueAntiTheft = value as int;
+                            });
+                          }),
+                    ),
+                  ],
+                )),
+            CardForm(
+                label: "Verificar selo tacógrafo",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('OK'),
+                          value: 1,
+                          groupValue: radioValueStamp,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueStamp = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Descolando'),
+                          value: 2,
+                          groupValue: radioValueStamp,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueStamp = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Sem Selo'),
+                          value: 3,
+                          groupValue: radioValueStamp,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueStamp = value as int;
+                            });
+                          }),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          flex: 3,
+                          child: Container(
+                            height: 40,
+                            child: RadioListTile(
+                                title: Text('Outro'),
+                                value: 4,
+                                groupValue: radioValueStamp,
+                                onChanged: (value) {
+                                  setState(() {
+                                    radioValueStamp = value as int;
+                                  });
+                                }),
+                          ),
+                        ),
+                        Visibility(
+                            child: Flexible(
+                          child: TextFormField(
+                            enabled: radioValueStamp == 4,
+                          ),
+                          flex: 5,
+                        ))
+                      ],
+                    )
+                  ],
+                )),
+            CardForm(
+              label: "Tirar foto da condição do selo",
+              widget: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                      primary: Color.fromRGBO(37, 59, 179, 1)),
+                  onPressed: () {},
+                  icon: Icon(Icons.file_present),
+                  label: Text('Anexar Arquivo')),
+            ),
+            CardForm(
+                label: "Houve realização de serviço?",
+                widget: Column(
+                  // mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Sim'),
+                          value: 1,
+                          groupValue: radioValueServiceDone,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueServiceDone = value as int;
+                            });
+                          }),
+                    ),
+                    SizedBox(
+                      height: 40,
+                      child: RadioListTile(
+                          title: Text('Não'),
+                          value: 2,
+                          groupValue: radioValueServiceDone,
+                          onChanged: (value) {
+                            setState(() {
+                              radioValueServiceDone = value as int;
+                            });
+                          }),
+                    ),
+                  ],
+                )),
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                height: 30,
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Modular.to.pushNamed('/home');
+                  },
+                  child: Text('ENVIAR'),
+                  style: ElevatedButton.styleFrom(
+                      primary: Color.fromRGBO(33, 33, 33, 1)),
                 ))
           ],
         ),
