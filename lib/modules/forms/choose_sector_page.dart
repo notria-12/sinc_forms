@@ -74,14 +74,14 @@ class ChooseSectorPage extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                InkWell(
-                  onTap: () {
-                    // Modular.to.pushNamed('/choose');
-                  },
-                  child: SectorWidget(
-                    label: "Recursos Humanos(RH)",
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {
+                //     // Modular.to.pushNamed('/choose');
+                //   },
+                //   child: SectorWidget(
+                //     label: "Recursos Humanos(RH)",
+                //   ),
+                // ),
               ],
             ))
           ],
