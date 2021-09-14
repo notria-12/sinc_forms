@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_modular: ^3.4.1+1
   intl: ^0.17.0
+  flutter_form_builder: ^6.1.0+1
 
 dev_dependencies:
   flutter_test:
