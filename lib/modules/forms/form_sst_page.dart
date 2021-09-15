@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 import 'package:sinc_forms/shared/widgets/card_form_widget.dart';
 import 'package:sinc_forms/shared/widgets/header_form_widget.dart';
@@ -14,6 +15,7 @@ class _FormSSTPageState extends State<FormSSTPage> {
   int val = -1;
   int radioValue = -1;
   DateTime selectedDate = DateTime.now();
+  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,113 +25,117 @@ class _FormSSTPageState extends State<FormSSTPage> {
       ),
       backgroundColor: Color.fromRGBO(240, 235, 248, 1),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HeaderForm(label: "Solicitação de Serviços em SST"),
-            CardForm(
-                label: "Email",
-                widget: TextFormField(
-                  decoration: InputDecoration(hintText: "email"),
-                )),
-            CardForm(
-                label: "Solicitante",
-                widget: TextFormField(
-                  decoration: InputDecoration(hintText: "Informe seu nome"),
-                )),
-            CardForm(
-                label: "Setor",
-                widget: TextFormField(
-                  decoration: InputDecoration(hintText: "Informe seu setor"),
-                )),
-            CardForm(
-                label: "Telefone p/Contato",
-                widget: TextFormField(
-                  decoration: InputDecoration(hintText: "Contato"),
-                )),
-            CardForm(
-                label: "Tipo de Serviço",
-                widget: Column(
-                  children: [
-                    RadioListTile(
-                        title: Text(
-                            "Treinamentos (CURSOS ESPECIFÍCOS DE FORMAÇÃO INICIAL OU CONTINUADA)"),
-                        value: 1,
-                        groupValue: val,
-                        onChanged: (value) {
-                          setState(() {
-                            val = value as int;
-                          });
-                        }),
-                    RadioListTile(
-                        title:
-                            Text("E.P.I (EQUIPAMENTOS DE PROTEÇÃO INDIVIDUAL"),
-                        value: 2,
-                        groupValue: val,
-                        onChanged: (value) {
-                          setState(() {
-                            val = value as int;
-                          });
-                        }),
-                    RadioListTile(
-                        title: Text("Dedetização"),
-                        value: 3,
-                        groupValue: val,
-                        onChanged: (value) {
-                          setState(() {
-                            val = value as int;
-                          });
-                        }),
-                    RadioListTile(
-                        title: Text("Outro"),
-                        value: 4,
-                        groupValue: val,
-                        onChanged: (value) {
-                          setState(() {
-                            val = value as int;
-                          });
-                        }),
-                  ],
-                )),
-            CardForm(
-                label: "Descrição do serviço solicitado",
-                widget: TextFormField(
-                  decoration: InputDecoration(hintText: "Descreva o serviço"),
-                )),
-            CardForm(
-                label: "Prioridade",
-                widget: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Text("Muito alta"),
-                      flex: 3,
-                    ),
-                    Flexible(
-                      flex: 6,
-                      child: Container(
-                        // color: Colors.amber[50],
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          // mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("1"),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Container(
-                                  // color: Colors.blue,
-                                  child: SizedBox(
+        child: FormBuilder(
+          key: _fbKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderForm(label: "Solicitação de Serviços em SST"),
+              CardForm(
+                  label: "Email",
+                  widget: FormBuilderTextField(
+                    name: "Email",
+                    decoration: InputDecoration(hintText: "email"),
+                  )),
+              CardForm(
+                  label: "Solicitante",
+                  widget: FormBuilderTextField(
+                    name: "Solicitante",
+                    decoration: InputDecoration(hintText: "Informe seu nome"),
+                  )),
+              CardForm(
+                  label: "Setor",
+                  widget: FormBuilderTextField(
+                    name: "Setor",
+                    decoration: InputDecoration(hintText: "Informe seu setor"),
+                  )),
+              CardForm(
+                  label: "Telefone p/Contato",
+                  widget: FormBuilderTextField(
+                    name: "Telefone",
+                    decoration: InputDecoration(hintText: "Contato"),
+                  )),
+              CardForm(
+                  label: "Tipo de Serviço",
+                  widget: FormBuilderRadioGroup(
+                      orientation: OptionsOrientation.vertical,
+                      name: "Tipo de Serviço ",
+                      options: [
+                        "Treinamentos (CURSOS ESPECIFÍCOS DE FORMAÇÃO INICIAL OU CONTINUADA)",
+                        "E.P.I (EQUIPAMENTOS DE PROTEÇÃO INDIVIDUAL",
+                        "Dedetização",
+                        "Outro"
+                      ]
+                          .map((opt) => FormBuilderFieldOption(
+                                value: opt,
+                                child: opt == "Outro"
+                                    ? FormBuilderTextField(
+                                        name: "Outro T. Serviço")
+                                    : Text(opt),
+                              ))
+                          .toList())),
+              CardForm(
+                  label: "Descrição do serviço solicitado",
+                  widget: FormBuilderTextField(
+                    name: "Descrição do serviço solicitado",
+                    decoration: InputDecoration(hintText: "Descreva o serviço"),
+                  )),
+              CardForm(
+                  label: "Prioridade",
+                  widget: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Text("Muito alta"),
+                        flex: 3,
+                      ),
+                      Flexible(
+                        flex: 6,
+                        child: Container(
+                          // color: Colors.amber[50],
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            // mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text("1"),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    // color: Colors.blue,
+                                    child: SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: Radio(
+                                        value: 1,
+                                        groupValue: radioValue,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            radioValue = value as int;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text("2"),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  SizedBox(
                                     height: 20,
                                     width: 20,
                                     child: Radio(
-                                      value: 1,
+                                      value: 2,
                                       groupValue: radioValue,
                                       onChanged: (value) {
                                         setState(() {
@@ -137,138 +143,117 @@ class _FormSSTPageState extends State<FormSSTPage> {
                                         });
                                       },
                                     ),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text("3"),
+                                  SizedBox(
+                                    height: 20,
                                   ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text("2"),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: Radio(
-                                    value: 2,
-                                    groupValue: radioValue,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        radioValue = value as int;
-                                      });
-                                    },
+                                  SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: Radio(
+                                      value: 3,
+                                      groupValue: radioValue,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          radioValue = value as int;
+                                        });
+                                      },
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text("4"),
+                                  SizedBox(
+                                    height: 20,
                                   ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text("3"),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: Radio(
-                                    value: 3,
-                                    groupValue: radioValue,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        radioValue = value as int;
-                                      });
-                                    },
+                                  SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: Radio(
+                                      value: 4,
+                                      groupValue: radioValue,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          radioValue = value as int;
+                                        });
+                                      },
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text("5"),
+                                  SizedBox(
+                                    height: 20,
                                   ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text("4"),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: Radio(
-                                    value: 4,
-                                    groupValue: radioValue,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        radioValue = value as int;
-                                      });
-                                    },
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text("5"),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: Radio(
-                                    value: 5,
-                                    groupValue: radioValue,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        radioValue = value as int;
-                                      });
-                                    },
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
+                                  SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: Radio(
+                                      value: 5,
+                                      groupValue: radioValue,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          radioValue = value as int;
+                                        });
+                                      },
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Flexible(
-                      child: Text("Muito baixa"),
-                      flex: 3,
-                    ),
-                  ],
-                )),
-            CardForm(
-                label: "Prazo",
-                widget: ListTile(
-                  title: TextFormField(
-                    // initialValue: ,
+                      Flexible(
+                        child: Text("Muito baixa"),
+                        flex: 3,
+                      ),
+                    ],
+                  )),
+              CardForm(
+                  label: "Prazo",
+                  widget: ListTile(
+                    title: TextFormField(
+                      // initialValue: ,
 
-                    readOnly: true,
-                    decoration: InputDecoration(
-                        // labelText: "Data",
-                        hintText:
-                            DateFormat("dd/MM/yyyy").format(selectedDate)),
-                  ),
-                  trailing: IconButton(
-                      icon: Icon(Icons.calendar_today_rounded),
-                      onPressed: () => buildMaterialDatePicker(context)),
-                )),
-            CardForm(
-                label: "Mais detalhes importantes",
-                widget: TextFormField(
-                  decoration: InputDecoration(hintText: "Detalhes"),
-                )),
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                height: 30,
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Modular.to.pushNamed('/home');
-                  },
-                  child: Text('ENVIAR'),
-                  style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(33, 33, 33, 1)),
-                ))
-          ],
+                      readOnly: true,
+                      decoration: InputDecoration(
+                          // labelText: "Data",
+                          hintText:
+                              DateFormat("dd/MM/yyyy").format(selectedDate)),
+                    ),
+                    trailing: IconButton(
+                        icon: Icon(Icons.calendar_today_rounded),
+                        onPressed: () => buildMaterialDatePicker(context)),
+                  )),
+              CardForm(
+                  label: "Mais detalhes importantes",
+                  widget: TextFormField(
+                    decoration: InputDecoration(hintText: "Detalhes"),
+                  )),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  height: 30,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Modular.to.pushNamed('/home');
+                    },
+                    child: Text('ENVIAR'),
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(33, 33, 33, 1)),
+                  ))
+            ],
+          ),
         ),
       ),
     );
