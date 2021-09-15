@@ -41,6 +41,10 @@ class _FormIndustryPageState extends State<FormIndustryPage> {
                   label: "Técnico",
                   widget: FormBuilderRadioGroup(
                     orientation: OptionsOrientation.vertical,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Selecione seu nome"),
+                    ]),
                     name: "Técnico",
                     options: [
                       "Jotônio",
@@ -56,12 +60,20 @@ class _FormIndustryPageState extends State<FormIndustryPage> {
               CardForm(
                   label: "Setor",
                   widget: FormBuilderTextField(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
                     name: "Setor",
                     decoration: InputDecoration(hintText: "Setor"),
                   )),
               CardForm(
                 label: "Linha",
                 widget: FormBuilderTextField(
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context,
+                        errorText: "Esse campo é obrigatório"),
+                  ]),
                   name: "Linha",
                   decoration: InputDecoration(hintText: "Linha de Produção"),
                 ),
@@ -69,6 +81,10 @@ class _FormIndustryPageState extends State<FormIndustryPage> {
               CardForm(
                 label: "Máquina",
                 widget: FormBuilderTextField(
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context,
+                        errorText: "Esse campo é obrigatório"),
+                  ]),
                   name: "Máquina",
                   decoration: InputDecoration(hintText: "Informe a máquina"),
                 ),
@@ -76,111 +92,111 @@ class _FormIndustryPageState extends State<FormIndustryPage> {
               CardForm(
                   label: "Data de manutenção",
                   widget: ListTile(
-                    title: TextFormField(
-                      // initialValue: ,
-
-                      readOnly: true,
-                      decoration: InputDecoration(
-                          // labelText: "Data",
-                          hintText:
-                              DateFormat("dd/MM/yyyy").format(selectedDate)),
+                    title: FormBuilderDateTimePicker(
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(context,
+                            errorText: "Esse campo é obrigatório"),
+                      ]),
+                      name: 'Data Manutenção',
+                      format: DateFormat('dd/MM/yyyy'),
+                      // onChanged: _onChanged,
+                      inputType: InputType.date,
+                      // decoration: InputDecoration(
+                      //   labelText: 'Appointment Time',
+                      // ),
+                      // initialTime: TimeOfDay(hour: 8, minute: 0),
+                      initialValue: DateTime.now(),
+                      // enabled: true,
                     ),
-                    trailing: IconButton(
-                        icon: Icon(Icons.calendar_today_rounded),
-                        onPressed: () => buildMaterialDatePicker(context)),
+                    trailing: Icon(Icons.calendar_today_rounded),
                   )),
               CardForm(
-                //TODO: COLOCAR MÁSCARA
-                label: "Início da manutenção",
-                widget: TextFormField(
-                  decoration: InputDecoration(),
-                ),
-              ),
-              //TODO: COLOCAR MÁSCARA
-              CardForm(
-                label: "Fim da manutenção",
-                widget: TextFormField(
-                  decoration: InputDecoration(),
-                ),
-              ),
-              CardForm(
-                  label: "Tipo de manutenção",
-                  widget: Column(
-                    children: [
-                      RadioListTile(
-                          title: Text(
-                              "CORRETIVA (quando houve uma falha/quebra que interrompe o processo produtivo)"),
-                          value: 1,
-                          groupValue: valManutention,
-                          onChanged: (value) {
-                            setState(() {
-                              valManutention = value as int;
-                            });
-                          }),
-                      RadioListTile(
-                          title: Text(
-                              "CORRETIVA PLANEJADA (quando houve uma falha/quebra que NÃO interrompe o processo produtivo)"),
-                          value: 2,
-                          groupValue: valManutention,
-                          onChanged: (value) {
-                            setState(() {
-                              valManutention = value as int;
-                            });
-                          }),
-                      RadioListTile(
-                          title: Text(
-                              "PREVENTIVA (quando houve inspeção acompanhada de check-list)"),
-                          value: 3,
-                          groupValue: valManutention,
-                          onChanged: (value) {
-                            setState(() {
-                              valManutention = value as int;
-                            });
-                          }),
-                      RadioListTile(
-                          title: Text(
-                              "MELHORIA (quando houve a melhora de algo pré-existente)"),
-                          value: 4,
-                          groupValue: valManutention,
-                          onChanged: (value) {
-                            setState(() {
-                              valManutention = value as int;
-                            });
-                          }),
-                      RadioListTile(
-                          title: Text(
-                              "PROJETO (quando houve a implementação de algo inexistente)"),
-                          value: 5,
-                          groupValue: valManutention,
-                          onChanged: (value) {
-                            setState(() {
-                              valManutention = value as int;
-                            });
-                          }),
-                      RadioListTile(
-                          title: Text("OUTRO"),
-                          value: 6,
-                          groupValue: valManutention,
-                          onChanged: (value) {
-                            setState(() {
-                              valManutention = value as int;
-                            });
-                          })
-                    ],
+                  label: "Início da manutenção",
+                  widget: ListTile(
+                    title: FormBuilderDateTimePicker(
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(context,
+                            errorText: "Esse campo é obrigatório"),
+                      ]),
+                      name: 'Inicio Manutenção',
+                      // format: DateFormat('dd/MM/yyyy'),
+                      // onChanged: _onChanged,
+                      inputType: InputType.time,
+                      decoration:
+                          InputDecoration(hintText: "Selecione o horário"),
+                      initialTime: TimeOfDay(hour: 8, minute: 0),
+                      // initialValue: DateTime.now(),
+                      // enabled: true,
+                    ),
+                    trailing: Icon(Icons.timer),
                   )),
               CardForm(
-                label: "Descrição da atividade",
-                widget: TextFormField(
-                  decoration: InputDecoration(),
-                ),
-              ),
+                  label: "Fim da manutenção",
+                  widget: ListTile(
+                    title: FormBuilderDateTimePicker(
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(context,
+                            errorText: "Esse campo é obrigatório"),
+                      ]),
+                      name: 'Fim Manutenção',
+                      // format: DateFormat('dd/MM/yyyy'),
+                      // onChanged: _onChanged,
+                      inputType: InputType.time,
+                      decoration:
+                          InputDecoration(hintText: "Selecione o horário"),
+                      initialTime: TimeOfDay(hour: 8, minute: 0),
+                      // initialValue: DateTime.now(),
+                      // enabled: true,
+                    ),
+                    trailing: Icon(Icons.timer),
+                  )),
+              CardForm(
+                  label: "Tipo de manuteção",
+                  widget: FormBuilderRadioGroup(
+                    name: "Tipo Manutenção",
+                    orientation: OptionsOrientation.vertical,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
+                    options: [
+                      "CORRETIVA (quando houve uma falha/quebra que interrompe o processo produtivo)",
+                      "CORRETIVA PLANEJADA (quando houve uma falha/quebra que NÃO interrompe o processo produtivo)",
+                      "PREVENTIVA (quando houve inspeção acompanhada de check-list)",
+                      "MELHORIA (quando houve a melhora de algo pré-existente)",
+                      "PROJETO (quando houve a implementação de algo inexistente)",
+                      "Outro"
+                    ]
+                        .map((opt) => FormBuilderFieldOption(
+                              value: opt,
+                              child: opt == "Outro"
+                                  ? FormBuilderTextField(
+                                      name: "Outro T. Manutenção",
+                                      decoration:
+                                          InputDecoration(hintText: "Outro"))
+                                  : Text(opt),
+                            ))
+                        .toList(),
+                  )),
+              CardForm(
+                  label: "Descrição da atividade",
+                  widget: FormBuilderTextField(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
+                    name: "Descrição da atividade",
+                    decoration: InputDecoration(hintText: "Descrição"),
+                  )),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   height: 30,
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Modular.to.pushNamed('/home');
+                      if (_fbKey.currentState!.saveAndValidate()) {
+                        print(_fbKey.currentState!.value);
+                      }
                     },
                     child: Text('ENVIAR'),
                     style: ElevatedButton.styleFrom(
@@ -191,34 +207,5 @@ class _FormIndustryPageState extends State<FormIndustryPage> {
         ),
       ),
     );
-  }
-
-  buildMaterialDatePicker(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
-      initialEntryMode: DatePickerEntryMode.calendar,
-      initialDatePickerMode: DatePickerMode.day,
-      // selectableDayPredicate: _decideWhichDayToEnable,
-      helpText: 'Selecione a Data',
-      cancelText: 'Cancelar',
-      confirmText: 'Ok',
-      errorFormatText: 'Enter valid date',
-      errorInvalidText: 'Enter date in valid range',
-      fieldLabelText: 'Booking date',
-      fieldHintText: 'Month/Date/Year',
-      builder: (context, child) {
-        return Theme(
-          data: ThemeData.light(),
-          child: child!,
-        );
-      },
-    );
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
   }
 }
