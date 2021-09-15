@@ -14,37 +14,37 @@ class _FormTransportPageState extends State<FormTransportPage> {
   String dropdownValue = 'Selecione seu nome';
   String dropValue = 'Selecione a placa';
 
-  int radioValueBrake = -1;
-  int radioValueWheelSlack = -1;
-  int radioValueBrakeLining = -1;
-  int radioValueBushing = -1;
-  int radioValueTensor = -1;
-  int radioValueStraps = -1;
-  int radioValueOilLeak = -1;
-  int radioValueBarTerminal = -1;
-  int radioValueCrossheads = -1;
-  int radioValueBearing = -1;
-  int radioValueSpringBeams = -1;
-  int radioValueFrontSuspension = -1;
-  int radioValueTrunkBallast = -1;
-  int radioValueAirConditioner = -1;
-  int radioValueFuelFloat = -1;
-  int radioValueLamps = -1;
-  int radioValueWaterOil = -1;
-  int radioValueKnobsLocks = -1;
-  int radioValueLubrication = -1;
-  int radioValueTires = -1;
-  int radioValueSolder = -1;
-  int radioValueChest = -1;
-  int radioValueJack = -1;
-  int radioValueTireIron = -1;
-  int radioValueTriangle = -1;
-  int radioValueExtinguisher = -1;
-  int radioValueSecurityKit = -1;
-  int radioValueWindshield = -1;
-  int radioValueAntiTheft = -1;
-  int radioValueStamp = -1;
-  int radioValueServiceDone = -1;
+  // int radioValueBrake = -1;
+  // int radioValueWheelSlack = -1;
+  // int radioValueBrakeLining = -1;
+  // int radioValueBushing = -1;
+  // int radioValueTensor = -1;
+  // int radioValueStraps = -1;
+  // int radioValueOilLeak = -1;
+  // int radioValueBarTerminal = -1;
+  // int radioValueCrossheads = -1;
+  // int radioValueBearing = -1;
+  // int radioValueSpringBeams = -1;
+  // int radioValueFrontSuspension = -1;
+  // int radioValueTrunkBallast = -1;
+  // int radioValueAirConditioner = -1;
+  // int radioValueFuelFloat = -1;
+  // int radioValueLamps = -1;
+  // int radioValueWaterOil = -1;
+  // int radioValueKnobsLocks = -1;
+  // int radioValueLubrication = -1;
+  // int radioValueTires = -1;
+  // int radioValueSolder = -1;
+  // int radioValueChest = -1;
+  // int radioValueJack = -1;
+  // int radioValueTireIron = -1;
+  // int radioValueTriangle = -1;
+  // int radioValueExtinguisher = -1;
+  // int radioValueSecurityKit = -1;
+  // int radioValueWindshield = -1;
+  // int radioValueAntiTheft = -1;
+  // int radioValueStamp = -1;
+  // int radioValueServiceDone = -1;
 
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 
@@ -88,7 +88,7 @@ class _FormTransportPageState extends State<FormTransportPage> {
                         'Antônio Francisco Santos de Sousa(Vaqueiro)',
                         'Edi Carlos Da silva Oliveira',
                         'José Francisco Gonçalves(Peteca)',
-                        'Orlnado Ferreira Santos(Tomate)',
+                        'Orlando Ferreira Santos(Tomate)',
                         'Natan Da Silva Pereira',
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -324,6 +324,12 @@ class _FormTransportPageState extends State<FormTransportPage> {
                   label: "Verificar - Anti-Furto",
                   widget: FormBuilderRadioGroup(
                       name: "Verificar - Anti-Furto",
+                      orientation: OptionsOrientation.vertical,
+                      validator: (value) {
+                        if (value == null) {
+                          return "Selecione uma das opções";
+                        }
+                      },
                       options: ["Selada", "Não Selada"]
                           .map((opt) => FormBuilderFieldOption(
                                 value: opt,
@@ -335,6 +341,11 @@ class _FormTransportPageState extends State<FormTransportPage> {
                   widget: FormBuilderRadioGroup(
                       orientation: OptionsOrientation.vertical,
                       name: "Verificar selo tacógrafo",
+                      validator: (value) {
+                        if (value == null) {
+                          return "Selecione uma das opções";
+                        }
+                      },
                       options: ["Ok", "Descolado", "Sem selo", "Outro"]
                           .map((opt) => FormBuilderFieldOption(
                                 value: opt,
@@ -394,6 +405,11 @@ class CustomRadioGroupTwoOptions extends StatelessWidget {
     return FormBuilderRadioGroup(
         orientation: OptionsOrientation.vertical,
         name: name,
+        validator: (value) {
+          if (value == null) {
+            return "Selecione uma das opções";
+          }
+        },
         options: ["SIM", "NÃO"]
             .map((opt) => FormBuilderFieldOption(
                   value: opt,

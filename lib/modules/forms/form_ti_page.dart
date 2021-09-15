@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sinc_forms/shared/widgets/card_form_widget.dart';
 import 'package:sinc_forms/shared/widgets/header_form_widget.dart';
 
@@ -11,6 +12,8 @@ class FormTIPage extends StatefulWidget {
 
 class _FormTIPageState extends State<FormTIPage> {
   String dropdownValue = 'Selecione o Setor';
+
+  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,92 +23,89 @@ class _FormTIPageState extends State<FormTIPage> {
       ),
       backgroundColor: Color.fromRGBO(240, 235, 248, 1),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HeaderForm(label: "Abertura de chamdo - T.I"),
-            CardForm(
-              label: "Informe seu nome: ",
-              widget: TextFormField(
-                decoration: InputDecoration(hintText: "Nome do solicitante"),
+        child: FormBuilder(
+          key: _fbKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderForm(label: "Abertura de chamdo - T.I"),
+              CardForm(
+                label: "Informe seu nome: ",
+                widget: FormBuilderTextField(
+                  name: 'nome',
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context,
+                        errorText: "Esse Campo não pode ser vazio"),
+                  ]),
+                  keyboardType: TextInputType.text,
+                ),
               ),
-            ),
-            CardForm(
+              CardForm(
                 label: "Departamento",
-                widget: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    icon: Container(),
-                    underline: Container(),
-                    elevation: 16,
-                    style: const TextStyle(color: Colors.black),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
+                widget: FormBuilderDropdown(
+                  name: 'departamento',
+                  allowClear: true,
+                  hint: Text('Selecione o Setor'),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context,
+                        errorText: "Esse Campo não pode ser vazio")
+                  ]),
+                  items: [
+                    'Financeiro',
+                    'Faturamento',
+                    'Contabilidade',
+                    'Segurança do Trabalho',
+                    'Transporte',
+                    'Indústria',
+                    'Recursos Humanos'
+                  ]
+                      .map((gender) => DropdownMenuItem(
+                            value: gender,
+                            child: Text('$gender'),
+                          ))
+                      .toList(),
+                ),
+              ),
+              CardForm(
+                  label: "Descrição da solicitação",
+                  widget: FormBuilderTextField(
+                    maxLines: 8,
+                    maxLength: 600,
+                    name: 'desc_solicitacao',
+                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse Campo não pode ser vazio"),
+                    ]),
+                    keyboardType: TextInputType.text,
+                  )),
+              CardForm(
+                label: "Anexar Arquivo",
+                widget: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(37, 59, 179, 1)),
+                    onPressed: () {},
+                    icon: Icon(Icons.file_present),
+                    label: Text('Anexar Arquivo')),
+              ),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  height: 30,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_fbKey.currentState!.saveAndValidate()) {
+                        print(_fbKey.currentState!.value);
+                      } else {
+                        print("Preencha Os dados orbigatórios");
+                      }
                     },
-                    items: <String>[
-                      'Selecione o Setor',
-                      'Adimistrativo',
-                      'Segurança do Trabalho',
-                      'Transporte',
-                      'Indústria',
-                      'Recursos Humanos',
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Container(
-                            width: MediaQuery.of(context).size.width * 0.75,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  value,
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto', fontSize: 16),
-                                ),
-                                Icon(Icons.arrow_drop_down)
-                              ],
-                            )),
-                      );
-                    }).toList(),
-                  ),
-                )),
-            CardForm(
-                label: "Descrição da solicitação",
-                widget: TextFormField(
-                  maxLength: 600,
-                  maxLines: 6,
-                  decoration: InputDecoration(
-                      hintText: "Descreva a solicitação",
-                      border: OutlineInputBorder()),
-                )),
-            CardForm(
-              label: "Anexar Arquivo",
-              widget: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(37, 59, 179, 1)),
-                  onPressed: () {},
-                  icon: Icon(Icons.file_present),
-                  label: Text('Anexar Arquivo')),
-            ),
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                height: 30,
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Modular.to.pushNamed('/home');
-                  },
-                  child: Text('ENVIAR'),
-                  style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(33, 33, 33, 1)),
-                ))
-          ],
+                    child: Text('ENVIAR'),
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(33, 33, 33, 1)),
+                  ))
+            ],
+          ),
         ),
       ),
     );
