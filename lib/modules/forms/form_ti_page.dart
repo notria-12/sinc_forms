@@ -28,7 +28,7 @@ class _FormTIPageState extends State<FormTIPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderForm(label: "Abertura de chamdo - T.I"),
+              HeaderForm(label: "Abertura de chamado - T.I"),
               CardForm(
                 label: "Informe seu nome: ",
                 widget: FormBuilderTextField(
