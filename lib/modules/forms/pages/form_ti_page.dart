@@ -94,11 +94,12 @@ class _FormTIPageState extends State<FormTIPage> {
                   height: 30,
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_fbKey.currentState!.saveAndValidate()) {
                         Map data = _fbKey.currentState!.value;
 
-                        FormTIController().createForm(data);
+                        await FormTIController().createForm(data);
+                        _fbKey.currentState!.reset();
                       } else {
                         print("Preencha Os dados orbigatórios");
                       }
