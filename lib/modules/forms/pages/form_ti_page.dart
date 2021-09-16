@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:sinc_forms/modules/forms/controllers/form_ti_controller.dart';
 import 'package:sinc_forms/shared/widgets/card_form_widget.dart';
 import 'package:sinc_forms/shared/widgets/header_form_widget.dart';
 
@@ -95,7 +96,9 @@ class _FormTIPageState extends State<FormTIPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_fbKey.currentState!.saveAndValidate()) {
-                        print(_fbKey.currentState!.value);
+                        Map data = _fbKey.currentState!.value;
+
+                        FormTIController().createForm(data);
                       } else {
                         print("Preencha Os dados orbigatórios");
                       }
