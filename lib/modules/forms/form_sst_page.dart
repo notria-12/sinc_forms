@@ -34,30 +34,50 @@ class _FormSSTPageState extends State<FormSSTPage> {
               CardForm(
                   label: "Email",
                   widget: FormBuilderTextField(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
                     name: "Email",
                     decoration: InputDecoration(hintText: "email"),
                   )),
               CardForm(
                   label: "Solicitante",
                   widget: FormBuilderTextField(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
                     name: "Solicitante",
                     decoration: InputDecoration(hintText: "Informe seu nome"),
                   )),
               CardForm(
                   label: "Setor",
                   widget: FormBuilderTextField(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
                     name: "Setor",
                     decoration: InputDecoration(hintText: "Informe seu setor"),
                   )),
               CardForm(
                   label: "Telefone p/Contato",
                   widget: FormBuilderTextField(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
                     name: "Telefone",
                     decoration: InputDecoration(hintText: "Contato"),
                   )),
               CardForm(
                   label: "Tipo de Serviço",
                   widget: FormBuilderRadioGroup(
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(context,
+                            errorText: "Esse campo é obrigatório"),
+                      ]),
                       orientation: OptionsOrientation.vertical,
                       name: "Tipo de Serviço ",
                       options: [
@@ -70,13 +90,20 @@ class _FormSSTPageState extends State<FormSSTPage> {
                                 value: opt,
                                 child: opt == "Outro"
                                     ? FormBuilderTextField(
-                                        name: "Outro T. Serviço")
+                                        name: "Outro T. Serviço",
+                                        decoration:
+                                            InputDecoration(hintText: "Outro"),
+                                      )
                                     : Text(opt),
                               ))
                           .toList())),
               CardForm(
                   label: "Descrição do serviço solicitado",
                   widget: FormBuilderTextField(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
                     name: "Descrição do serviço solicitado",
                     decoration: InputDecoration(hintText: "Descreva o serviço"),
                   )),
@@ -94,122 +121,19 @@ class _FormSSTPageState extends State<FormSSTPage> {
                       Flexible(
                         flex: 6,
                         child: Container(
-                          // color: Colors.amber[50],
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            // mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text("1"),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    // color: Colors.blue,
-                                    child: SizedBox(
-                                      height: 20,
-                                      width: 20,
-                                      child: Radio(
-                                        value: 1,
-                                        groupValue: radioValue,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            radioValue = value as int;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text("2"),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Radio(
-                                      value: 2,
-                                      groupValue: radioValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          radioValue = value as int;
-                                        });
-                                      },
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text("3"),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Radio(
-                                      value: 3,
-                                      groupValue: radioValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          radioValue = value as int;
-                                        });
-                                      },
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text("4"),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Radio(
-                                      value: 4,
-                                      groupValue: radioValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          radioValue = value as int;
-                                        });
-                                      },
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  Text("5"),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Radio(
-                                      value: 5,
-                                      groupValue: radioValue,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          radioValue = value as int;
-                                        });
-                                      },
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
+                          child: FormBuilderRadioGroup(
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(context,
+                                  errorText: "Esse campo é obrigatório"),
+                            ]),
+                            orientation: OptionsOrientation.wrap,
+                            wrapVerticalDirection: VerticalDirection.down,
+                            name: "Prioridade",
+                            options: [1, 2, 3, 4, 5]
+                                .map((opt) => FormBuilderFieldOption(
+                                      value: opt,
+                                    ))
+                                .toList(),
                           ),
                         ),
                       ),
@@ -222,22 +146,26 @@ class _FormSSTPageState extends State<FormSSTPage> {
               CardForm(
                   label: "Prazo",
                   widget: ListTile(
-                    title: TextFormField(
-                      // initialValue: ,
-
-                      readOnly: true,
-                      decoration: InputDecoration(
-                          // labelText: "Data",
-                          hintText:
-                              DateFormat("dd/MM/yyyy").format(selectedDate)),
+                    title: FormBuilderDateTimePicker(
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(context,
+                            errorText: "Esse campo é obrigatório"),
+                      ]),
+                      name: 'Data Manutenção',
+                      format: DateFormat('dd/MM/yyyy'),
+                      inputType: InputType.date,
+                      initialValue: DateTime.now(),
                     ),
-                    trailing: IconButton(
-                        icon: Icon(Icons.calendar_today_rounded),
-                        onPressed: () => buildMaterialDatePicker(context)),
+                    trailing: Icon(Icons.calendar_today_rounded),
                   )),
               CardForm(
                   label: "Mais detalhes importantes",
-                  widget: TextFormField(
+                  widget: FormBuilderTextField(
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse campo é obrigatório"),
+                    ]),
+                    name: "Detalhes",
                     decoration: InputDecoration(hintText: "Detalhes"),
                   )),
               Container(
@@ -246,7 +174,9 @@ class _FormSSTPageState extends State<FormSSTPage> {
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Modular.to.pushNamed('/home');
+                      if (_fbKey.currentState!.saveAndValidate()) {
+                        print(_fbKey.currentState!.value);
+                      }
                     },
                     child: Text('ENVIAR'),
                     style: ElevatedButton.styleFrom(
