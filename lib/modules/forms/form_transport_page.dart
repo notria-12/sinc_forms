@@ -11,41 +11,6 @@ class FormTransportPage extends StatefulWidget {
 }
 
 class _FormTransportPageState extends State<FormTransportPage> {
-  String dropdownValue = 'Selecione seu nome';
-  String dropValue = 'Selecione a placa';
-
-  // int radioValueBrake = -1;
-  // int radioValueWheelSlack = -1;
-  // int radioValueBrakeLining = -1;
-  // int radioValueBushing = -1;
-  // int radioValueTensor = -1;
-  // int radioValueStraps = -1;
-  // int radioValueOilLeak = -1;
-  // int radioValueBarTerminal = -1;
-  // int radioValueCrossheads = -1;
-  // int radioValueBearing = -1;
-  // int radioValueSpringBeams = -1;
-  // int radioValueFrontSuspension = -1;
-  // int radioValueTrunkBallast = -1;
-  // int radioValueAirConditioner = -1;
-  // int radioValueFuelFloat = -1;
-  // int radioValueLamps = -1;
-  // int radioValueWaterOil = -1;
-  // int radioValueKnobsLocks = -1;
-  // int radioValueLubrication = -1;
-  // int radioValueTires = -1;
-  // int radioValueSolder = -1;
-  // int radioValueChest = -1;
-  // int radioValueJack = -1;
-  // int radioValueTireIron = -1;
-  // int radioValueTriangle = -1;
-  // int radioValueExtinguisher = -1;
-  // int radioValueSecurityKit = -1;
-  // int radioValueWindshield = -1;
-  // int radioValueAntiTheft = -1;
-  // int radioValueStamp = -1;
-  // int radioValueServiceDone = -1;
-
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -59,148 +24,87 @@ class _FormTransportPageState extends State<FormTransportPage> {
       body: SingleChildScrollView(
         child: FormBuilder(
           key: _fbKey,
-          // autovalidateMode: AutovalidateMode.always,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HeaderForm(label: "CHECK-LIST OFICINA"),
               CardForm(
-                  label: "Qual o nome do vistoriador?",
-                  widget: Container(
-                    width: double.maxFinite,
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: DropdownButton<String>(
-                      value: dropdownValue,
-                      icon: Container(),
-                      underline: Container(),
-                      elevation: 16,
-                      style: const TextStyle(color: Colors.black),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue = newValue!;
-                        });
-                      },
-                      items: <String>[
-                        'Selecione seu nome',
-                        'Antônio Francisco Santos de Sousa(Vaqueiro)',
-                        'Edi Carlos Da silva Oliveira',
-                        'José Francisco Gonçalves(Peteca)',
-                        'Orlando Ferreira Santos(Tomate)',
-                        'Natan Da Silva Pereira',
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Container(
-                              width: MediaQuery.of(context).size.width * 0.75,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    flex: 9,
-                                    child: Container(
-                                      // width: double.maxFinite,
-                                      child: Text(
-                                        value,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontFamily: 'Roboto', fontSize: 16),
-                                      ),
-                                    ),
-                                  ),
-                                  // Flexible(
-                                  //     flex: 1, child: Icon(Icons.arrow_drop_down))
-                                ],
-                              )),
-                        );
-                      }).toList(),
-                    ),
-                  )),
+                label: "Qual o nome do vistoriador?",
+                widget: FormBuilderDropdown(
+                  name: 'Vistoriador',
+                  allowClear: true,
+                  hint: Text('Selecione seu nome'),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context,
+                        errorText: "Esse Campo não pode ser vazio")
+                  ]),
+                  items: [
+                    'Antônio Francisco Santos de Sousa(Vaqueiro)',
+                    'Edi Carlos Da silva Oliveira',
+                    'José Francisco Gonçalves(Peteca)',
+                    'Orlando Ferreira Santos(Tomate)',
+                    'Natan Da Silva Pereira'
+                  ]
+                      .map((gender) => DropdownMenuItem(
+                            value: gender,
+                            child: Text('$gender'),
+                          ))
+                      .toList(),
+                ),
+              ),
               CardForm(
                   label: "Qual a placa do veículo?",
-                  widget: Container(
-                    // width: double.maxFinite,
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: DropdownButton<String>(
-                      value: dropValue,
-                      icon: Container(),
-                      underline: Container(),
-                      elevation: 16,
-                      style: const TextStyle(color: Colors.black),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropValue = newValue!;
-                        });
-                      },
-                      items: <String>[
-                        'Selecione a placa',
-                        'HPE-0799',
-                        'HPK-3389',
-                        'HPY-7668',
-                        'HPY-9776',
-                        'HPT-6023',
-                        'LVJ-3756',
-                        'LVK-8571',
-                        'LVM-2B61',
-                        'NHE-9868',
-                        'NHL-3832',
-                        'NHL-5794',
-                        'NHS-6256',
-                        'NHS-6381',
-                        'NHT-9179',
-                        'NHV-9069',
-                        'NMP-1819',
-                        'NMW-7455',
-                        'NNA-9501',
-                        'NNE-8167',
-                        'NXF-8891',
-                        'NXJ-1I45',
-                        'OIY-7168',
-                        'OIY-8990',
-                        'OIY-9367',
-                        'OJA-0049',
-                        'OJM-8561',
-                        'OJM-8581',
-                        'OJM-9124',
-                        'OJM-9895',
-                        'PSB-1167',
-                        'PSB-1860',
-                        'PSO-2014',
-                        'HPK-7983',
-                        'HPN-7603',
-                        'NTJ-8773',
-                        'PSB-2089'
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Container(
-                              // width: MediaQuery.of(context).size.width * 0.75,
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                // width: double.maxFinite,
-                                child: Text(
-                                  value,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto', fontSize: 16),
-                                ),
-                              ),
-                              Icon(Icons.arrow_drop_down)
-                              // Flexible(
-                              //     flex: 1, child: Icon(Icons.arrow_drop_down))
-                            ],
-                          )),
-                        );
-                      }).toList(),
-                    ),
+                  widget: FormBuilderDropdown(
+                    name: 'Placa',
+                    allowClear: true,
+                    hint: Text('Selecione a placa'),
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context,
+                          errorText: "Esse Campo não pode ser vazio")
+                    ]),
+                    items: [
+                      'HPE-0799',
+                      'HPK-3389',
+                      'HPY-7668',
+                      'HPY-9776',
+                      'HPT-6023',
+                      'LVJ-3756',
+                      'LVK-8571',
+                      'LVM-2B61',
+                      'NHE-9868',
+                      'NHL-3832',
+                      'NHL-5794',
+                      'NHS-6256',
+                      'NHS-6381',
+                      'NHT-9179',
+                      'NHV-9069',
+                      'NMP-1819',
+                      'NMW-7455',
+                      'NNA-9501',
+                      'NNE-8167',
+                      'NXF-8891',
+                      'NXJ-1I45',
+                      'OIY-7168',
+                      'OIY-8990',
+                      'OIY-9367',
+                      'OJA-0049',
+                      'OJM-8561',
+                      'OJM-8581',
+                      'OJM-9124',
+                      'OJM-9895',
+                      'PSB-1167',
+                      'PSB-1860',
+                      'PSO-2014',
+                      'HPK-7983',
+                      'HPN-7603',
+                      'NTJ-8773',
+                      'PSB-2089'
+                    ]
+                        .map((gender) => DropdownMenuItem(
+                              value: gender,
+                              child: Text('$gender'),
+                            ))
+                        .toList(),
                   )),
               CardForm(
                   label: "Regular Freio",
