@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sinc_forms/modules/home/home_page.dart';
+import 'package:sinc_forms/modules/home/ti_home_page.dart';
 
 class HomeModule extends Module {
   @override
