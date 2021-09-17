@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sinc_forms/modules/home/widgets/called_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,7 +13,42 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Color.fromRGBO(37, 59, 179, 1)),
+              child: Container(),
+            ),
+            InkWell(
+              onTap: () {
+                Modular.to.pushNamed("/home/ti");
+              },
+              child: ListTile(
+                leading: Icon(Icons.list),
+                title: Text('Todos os chamados'),
+              ),
+            ),
+            InkWell(
+              onTap: () {},
+              child: ListTile(
+                leading: Icon(Icons.graphic_eq_outlined),
+                title: Text('Estatísticas'),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Modular.to.pop();
+                Modular.to.pop();
+              },
+              child: ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Sair'),
+              ),
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(37, 59, 179, 1),
         title: Text('Gerenciamento TI'),
@@ -133,7 +170,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.26,
+              bottom: MediaQuery.of(context).size.height * 0.6,
               child: Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(
@@ -158,40 +195,11 @@ class _HomePageState extends State<HomePage> {
                           topRight: Radius.circular(25))),
                   height: MediaQuery.of(context).size.height * 0.6,
                   child: ListView(
-                    children: [
-                      Card(
-                        child: ListTile(
-                          leading: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(240, 235, 248, 1),
-                                borderRadius: BorderRadius.circular(8)),
-                            child: Icon(Icons.list),
-                          ),
-                          title: Text("Recarga de tonner impressora Brother"),
-                          subtitle: Text("Indústria"),
-                        ),
-                      ),
-                      Card(
-                        child: ListTile(
-                          leading: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(240, 235, 248, 1),
-                                borderRadius: BorderRadius.circular(8)),
-                            child: Icon(Icons.list),
-                          ),
-                          title: Text(
-                            "Relatório de pedidos com erro ortográfico",
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          subtitle: Text("Faturamento"),
-                        ),
-                      )
-                    ],
-                  ),
+                      children: List.generate(
+                          7,
+                          (index) => CalledWidget(
+                              title: "Recarga de tonner Impressora Brother",
+                              subtitle: "Indústria"))),
                 ))
           ],
         ),
