@@ -1,10 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sinc_forms/modules/forms/choose_sector_page.dart';
-import 'package:sinc_forms/modules/forms/form_industry_page.dart';
-import 'package:sinc_forms/modules/forms/form_sst_page.dart';
-import 'package:sinc_forms/modules/forms/form_transport_page.dart';
+import 'package:sinc_forms/modules/forms/pages/choose_sector_page.dart';
+import 'package:sinc_forms/modules/forms/pages/form_industry_page.dart';
+import 'package:sinc_forms/modules/forms/pages/form_sst_page.dart';
+import 'package:sinc_forms/modules/forms/pages/form_transport_page.dart';
 
-import 'form_ti_page.dart';
+import 'pages/form_ti_page.dart';
 
 class FormsModule extends Module {
   @override
