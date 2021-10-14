@@ -1,6 +1,12 @@
+import 'dart:io';
+
+import 'package:path/path.dart';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:sinc_forms/modules/forms/controllers/form_ti_controller.dart';
+import 'package:sinc_forms/shared/utils/dialog.dart';
 import 'package:sinc_forms/shared/widgets/card_form_widget.dart';
 import 'package:sinc_forms/shared/widgets/header_form_widget.dart';
 
@@ -13,10 +19,14 @@ class FormTIPage extends StatefulWidget {
 
 class _FormTIPageState extends State<FormTIPage> {
   String dropdownValue = 'Selecione o Setor';
-
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
+  File? file;
+  final GlobalKey<State> _keyLoader = new GlobalKey<State>();
+
   @override
   Widget build(BuildContext context) {
+    String fileName =
+        file != null ? basename(file!.path) : "Nenhuma aquivo selecionado";
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(240, 235, 248, 1),
@@ -81,13 +91,19 @@ class _FormTIPageState extends State<FormTIPage> {
                     keyboardType: TextInputType.text,
                   )),
               CardForm(
-                label: "Anexar Arquivo",
-                widget: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(37, 59, 179, 1)),
-                    onPressed: () {},
-                    icon: Icon(Icons.file_present),
-                    label: Text('Anexar Arquivo')),
+                label: "Anexar Arquivo(opcional)",
+                widget: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            primary: Color.fromRGBO(37, 59, 179, 1)),
+                        onPressed: selectFile,
+                        icon: Icon(Icons.file_present),
+                        label: Text('Anexar Arquivo')),
+                    Text(fileName)
+                  ],
+                ),
               ),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -97,9 +113,24 @@ class _FormTIPageState extends State<FormTIPage> {
                     onPressed: () async {
                       if (_fbKey.currentState!.saveAndValidate()) {
                         Map data = _fbKey.currentState!.value;
-
-                        await FormTIController().createForm(data);
+                        Dialogs.showLoadingDialog(context, _keyLoader);
+                        if (file != null) {
+                          await FormTIController().createForm(data,
+                              file: file,
+                              destination: "files/TI/${basename(file!.path)}");
+                        } else {
+                          await FormTIController().createForm(
+                            data,
+                          );
+                        }
                         _fbKey.currentState!.reset();
+
+                        Navigator.of(_keyLoader.currentContext!,
+                                rootNavigator: true)
+                            .pop();
+                        setState(() {
+                          file = null;
+                        });
                       } else {
                         print("Preencha Os dados orbigatórios");
                       }
@@ -113,5 +144,16 @@ class _FormTIPageState extends State<FormTIPage> {
         ),
       ),
     );
+  }
+
+  Future selectFile() async {
+    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
+
+    if (result == null) return;
+
+    final path = result.files.single.path;
+    setState(() {
+      file = File(path!);
+    });
   }
 }
